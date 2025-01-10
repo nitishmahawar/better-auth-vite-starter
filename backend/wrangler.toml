@@ -1,0 +1,27 @@
+name = "backend"
+main = "src/index.ts"
+compatibility_date = "2025-01-09"
+compatibility_flags = [ "nodejs_compat" ]
+keep_vars = true
+
+# [vars]
+# MY_VAR = "my-variable"
+
+# [[kv_namespaces]]
+# binding = "MY_KV_NAMESPACE"
+# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# [[r2_buckets]]
+# binding = "MY_BUCKET"
+# bucket_name = "my-bucket"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "better-auth-vite-starter"
+database_id = "758a512d-30c4-4518-a684-27c6eeb165a3"
+
+# [ai]
+# binding = "AI"
+
+[observability]
+enabled = true
