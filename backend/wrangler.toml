@@ -1,4 +1,4 @@
-name = "backend"
+name = "better-auth-vite-starter-backend"
 main = "src/index.ts"
 compatibility_date = "2025-01-09"
 compatibility_flags = [ "nodejs_compat" ]
@@ -25,3 +25,6 @@ database_id = "758a512d-30c4-4518-a684-27c6eeb165a3"
 
 [observability]
 enabled = true
+
+[placement]
+mode = "smart"

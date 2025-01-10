@@ -3,21 +3,24 @@ import { cors } from "hono/cors";
 import { setupPrisma } from "@/lib/prisma";
 import { setupAuth } from "./lib/auth";
 import { HTTPException } from "hono/http-exception";
+import { setCookie } from "hono/cookie";
 
 const app = new Hono();
 
-app.use("*", setupPrisma);
-
 app.use(
-  "/api/auth/**", // or replace with "*" to enable cors for all routes
+  "*", // or replace with "*" to enable cors for all routes
   cors({
-    origin: ["http://localhost:5173"], // replace with your origin
+    origin: [
+      "http://localhost:5173",
+      "https://better-auth-vite-starter.vercel.app",
+    ], // replace with your origin
     allowHeaders: ["Content-Type", "Authorization"],
     allowMethods: ["POST", "GET", "OPTIONS"],
     exposeHeaders: ["Content-Length"],
     maxAge: 600,
     credentials: true,
-  })
+  }),
+  setupPrisma
 );
 
 app.on(["POST", "GET"], "/api/auth/**", (c) => {
@@ -26,6 +29,16 @@ app.on(["POST", "GET"], "/api/auth/**", (c) => {
 
 app.get("/", (c) => {
   return c.text("Hello Hono!");
+});
+
+app.post("/api/set-cookie", async (c) => {
+  setCookie(c, "cookie", "test-cookie", {
+    maxAge: 3600,
+    sameSite: "none",
+    secure: true,
+    path: "/",
+    httpOnly: true,
+  });
 });
 
 app.notFound((c) => {

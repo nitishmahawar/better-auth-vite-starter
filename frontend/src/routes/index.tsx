@@ -25,6 +25,15 @@ function Index() {
     router.navigate({ to: "/sign-in" });
   }
 
+  const handleSetCookie = async () => {
+    const res = await fetch(
+      `${import.meta.env.VITE_BETTER_AUTH_API_URL}/api/set-cookie`,
+      { method: "post", credentials: "include" }
+    );
+
+    await res.json();
+  };
+
   return (
     <div className="px-4 py-6">
       <div className="max-w-4xl mx-auto p-6 border rounded-lg bg-accent/30">
@@ -47,6 +56,9 @@ function Index() {
         </ProfileRoot>
 
         <div className="flex justify-end gap-2.5">
+          <Button onClick={handleSetCookie} variant="outline">
+            Set Cookie
+          </Button>
           <ChangePasswordDialog />
           <Button
             variant="outline"
