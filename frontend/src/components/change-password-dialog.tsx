@@ -56,10 +56,10 @@ export const ChangePasswordDialog = () => {
         newPassword: data.newPassword,
       },
       {
-        onRequest(context) {
+        onRequest() {
           setIsLoading(true);
         },
-        onResponse(context) {
+        onResponse() {
           setIsLoading(false);
         },
         onSuccess() {

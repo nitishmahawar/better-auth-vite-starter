@@ -39,7 +39,11 @@ interface ProfileEmailProps {
 const ProfileRoot = React.forwardRef<HTMLDivElement, ProfileRootProps>(
   ({ className, children, ...props }, ref) => {
     return (
-      <div ref={ref} className={cn("flex items-center gap-x-2", className)}>
+      <div
+        ref={ref}
+        className={cn("flex items-center gap-x-2", className)}
+        {...props}
+      >
         {children}
       </div>
     );
